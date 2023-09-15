@@ -6,7 +6,7 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 15:02:26 by sdanel            #+#    #+#             */
-/*   Updated: 2023/09/04 13:32:01 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/09/13 16:28:18 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ FragTrap::FragTrap(std::string name) : ClapTrap(name)
     this->_hit_points = 100;
     this->_energy_points = 100;
     this->_attack_damage = 30;
-
     std::cout << "[FragTrap] - " << this->_name << " constructed" << std::endl;
 }
 

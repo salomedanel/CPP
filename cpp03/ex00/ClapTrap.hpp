@@ -6,7 +6,7 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:17:33 by sdanel            #+#    #+#             */
-/*   Updated: 2023/08/29 15:22:03 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/09/13 16:40:54 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,10 @@ class ClapTrap
         ClapTrap &operator=(const ClapTrap &src);
         
         void attack(const std::string &target);
+        //void attackbis(ClapTrap &ct);
         void takeDamage(unsigned int amount);
         void beRepaired(unsigned int amount);
+        
 };
 
 #endif

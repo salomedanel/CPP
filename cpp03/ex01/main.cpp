@@ -6,7 +6,7 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:17:06 by sdanel            #+#    #+#             */
-/*   Updated: 2023/09/05 15:23:34 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/09/13 16:03:22 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,26 @@
 int main( void )
 {
     ScavTrap scav("Salome");
-    ScavTrap scav2("Jean");
+    ScavTrap scav2("Michel");
     std::cout << std::endl;
+    
+    std::cout << "--------- Premiere attaque --------------" << std::endl;
+    scav.attack("Michel");
+    scav2.takeDamage(20);
+     std::cout << "--------- Deuxieme attaque --------------" << std::endl;
+    scav.attack("Michel");
+    scav2.takeDamage(20);
+     std::cout << "--------- Troisieme attaque --------------" << std::endl;
+    scav.attack("Michel");
+    scav2.takeDamage(20);
+     std::cout << "--------- Quatrieme attaque --------------" << std::endl;
+    scav.attack("Michel");
+    scav2.takeDamage(20);
+     std::cout << "--------- Cinquieme attaque --------------" << std::endl;
+    scav.attack("Michel");
+    scav2.takeDamage(20);
+    std::cout << "------------- GuardGate -----------------" << std::endl;
 
-    scav.attack("Zombie");
-    scav.attack("Zombie");
-    scav.attack("Zombie");
-    scav.attack("Zombie");
-    scav.attack("Zombie");
-    scav2.attack("Salome");
-    scav.takeDamage(10);
-    scav.beRepaired(50);
-    scav.attack("Zombie");
     scav.guardGate();
     std::cout << std::endl;
     

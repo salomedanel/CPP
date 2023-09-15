@@ -6,17 +6,17 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 14:44:49 by sdanel            #+#    #+#             */
-/*   Updated: 2023/09/05 16:04:45 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/09/13 18:12:00 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "DiamondTrap.hpp"
 
-DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name), ScavTrap(name), FragTrap(name)
+DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name), FragTrap(name), ScavTrap(name)
 {
-     ClapTrap::_name = name + "_clap_name";
-     this->_name = name;
-
+    ClapTrap::_name = name + "_clap_name";
+    this->_name = name;
+    //this->_name = ClapTrap::_name + "_clap_name";
     this->_hit_points = FragTrap::_hit_points;
     this->_energy_points = ScavTrap::_energy_points;
     this->_attack_damage = FragTrap::_attack_damage;
@@ -24,7 +24,7 @@ DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name), ScavTrap(name), Fra
     std::cout << "[DiamondTrap] - " << this->_name << " constructed" << std::endl;
 }
 
-DiamondTrap::DiamondTrap(const DiamondTrap &src) : ClapTrap(src), ScavTrap(src), FragTrap(src)
+DiamondTrap::DiamondTrap(const DiamondTrap &src) : ClapTrap(src), FragTrap(src), ScavTrap(src)
 {
     std::cout << "[DiamondTrap] - " << this->_name << " copied" << std::endl;
     *this = src;

@@ -6,13 +6,13 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:22:09 by sdanel            #+#    #+#             */
-/*   Updated: 2023/09/05 15:29:07 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/09/13 17:46:34 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap(std::string name) : _name(name), _hit_points(10), _energy_points(10), _attack_damage(0)
+ClapTrap::ClapTrap(std::string name) : _name(name), _hit_points(0), _energy_points(0), _attack_damage(0)
 {
     std::cout << "[ClapTrap] - " << _name << " constructed" << std::endl;
 }
@@ -52,7 +52,7 @@ void    ClapTrap::attack(const std::string &target)
     }
     std::cout << "ClapTrap " << _name << " attacks " << target << ", causing " << _attack_damage << " points of damage!" << std::endl;
     _energy_points--;
-    _hit_points = _hit_points - _attack_damage;
+    std::cout << "Energy points left: " << _energy_points << std::endl;
 }
 
 void    ClapTrap::takeDamage(unsigned int amount)
@@ -63,7 +63,8 @@ void    ClapTrap::takeDamage(unsigned int amount)
         return ;
     }
     std::cout << "ClapTrap " << _name << " takes " << amount << " points of damage!" << std::endl;
-        _hit_points = _hit_points - amount;
+    _hit_points = _hit_points - amount;
+    std::cout << "Hit points left: " << _hit_points << std::endl;
 }
 
 void ClapTrap::beRepaired(unsigned int amount)

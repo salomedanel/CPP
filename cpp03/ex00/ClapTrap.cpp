@@ -6,7 +6,7 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:22:09 by sdanel            #+#    #+#             */
-/*   Updated: 2023/09/13 12:29:10 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/09/13 15:45:37 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 
 
-ClapTrap::ClapTrap(std::string name) : _name(name), _hit_points(10), _energy_points(10), _attack_damage(0)
+ClapTrap::ClapTrap(std::string name) : _name(name), _hit_points(10), _energy_points(10), _attack_damage(5)
 {
     std::cout << "[ClapTrap] - constructor called" << std::endl;
 }
@@ -55,11 +55,7 @@ void    ClapTrap::attack(const std::string &target)
     }
     std::cout << "ClapTrap " << _name << " attacks " << target << ", causing " << _attack_damage << " points of damage!" << std::endl;
     _energy_points--;
-    _hit_points = _hit_points - _attack_damage;
-    
-   // std::cout << "energy point = " << this->_energy_points << std::endl;
-   // std::cout << "hit point = " << this->_hit_points << std::endl;
-   // std::cout << "attack damage = " << this->_attack_damage << std::endl;
+    std::cout << "Energy points left: " << _energy_points << std::endl;
 }
 
 void    ClapTrap::takeDamage(unsigned int amount)
@@ -70,7 +66,8 @@ void    ClapTrap::takeDamage(unsigned int amount)
         return ;
     }
     std::cout << "ClapTrap " << _name << " takes " << amount << " points of damage!" << std::endl;
-        _hit_points = _hit_points - amount;
+    _hit_points = _hit_points - amount;
+    std::cout << "Hit points left: " << _hit_points << std::endl;
 }
 
 void ClapTrap::beRepaired(unsigned int amount)
@@ -84,6 +81,3 @@ void ClapTrap::beRepaired(unsigned int amount)
     _hit_points = _hit_points + amount;
     std::cout << "ClapTrap " << _name << " gains " << amount << " hit points!" << std::endl;
 }
-
-
-

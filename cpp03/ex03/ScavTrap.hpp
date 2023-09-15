@@ -6,7 +6,7 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 12:22:05 by sdanel            #+#    #+#             */
-/*   Updated: 2023/09/04 13:34:18 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/09/15 13:52:58 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 class ScavTrap : virtual public ClapTrap 
 {   
-    private:
+    protected:
         ScavTrap();
 
     public:

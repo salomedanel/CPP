@@ -6,7 +6,7 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 11:24:14 by sdanel            #+#    #+#             */
-/*   Updated: 2023/09/01 14:09:55 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/09/13 17:15:32 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class Animal
     public:
         Animal();
         Animal(std::string type);
-        virtual ~Animal();
+        virtual ~Animal(); // permet d'appeler le destructeur de la classe derivee par defaut et non celui ci - permet une bonne gestion de la memoire.
         
         Animal(const Animal &src);
         Animal &operator=(const Animal &src);
