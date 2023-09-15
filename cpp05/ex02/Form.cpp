@@ -6,7 +6,7 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 16:11:39 by sdanel            #+#    #+#             */
-/*   Updated: 2023/09/15 17:20:24 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/09/15 18:28:39 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,13 @@ bool Form::getSigned() const {
     return (_signed);
 }
 
+std::string Form::signedStatus(bool _signed) const {
+    if (_signed == true)
+        return ("True");
+    else
+        return ("False");
+}
+
 //methods
 bool Form::beSigned(Bureaucrat &brc) {
 
@@ -75,6 +82,11 @@ bool Form::beSigned(Bureaucrat &brc) {
     return (_signed);
 }
 
+void Form::execute(Bureaucrat const &executor) const {
+    (void) executor;
+    
+}
+
 // exceptions
 const   char* Form::GradeTooHighException::what() const throw() {
     return ("Grade too high to execute or sign the form");
@@ -84,6 +96,9 @@ const char* Form::GradeTooLowException::what() const throw() {
     return ("Grade too low to execute or sign the form");
 };
 
+const char* Form::FormAlreadySignedException::what() const throw() {
+    return ("Form already signed");
+};
 
 std::ostream &operator<<( std::ostream &o, Form const &src ) {
     o << "FORM INFO" << std::endl;

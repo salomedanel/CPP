@@ -6,7 +6,7 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 13:53:02 by sdanel            #+#    #+#             */
-/*   Updated: 2023/09/04 13:58:25 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/09/15 16:18:06 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ WrongCat::~WrongCat()
 
 void    WrongCat::makeSound(void) const
 {
-    WrongAnimal::makeSound();
-    //std::cout << "Wrong miaouuuu" << std::endl;
+    //WrongAnimal::makeSound();
+    std::cout << "Wrong miaouuuu" << std::endl;
 }

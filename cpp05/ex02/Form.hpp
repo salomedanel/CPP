@@ -6,7 +6,7 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 16:10:26 by sdanel            #+#    #+#             */
-/*   Updated: 2023/09/15 16:51:02 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/09/15 18:30:20 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,11 @@ class Form {
         int getGradeToExecute() const;
         int getGradeToSign() const;
         bool getSigned() const;
+        std::string signedStatus(bool _signed) const;
 
         bool beSigned(Bureaucrat &brc);
         void signForm();
+        virtual void execute(Bureaucrat const &executor) const = 0; // permet de creer une classe abstraite
 
         class GradeTooHighException : public std::exception{
             public:
@@ -49,9 +51,13 @@ class Form {
             public:
                 const char* what() const throw();
         };
+        class FormAlreadySignedException : public std::exception{
+            public:
+                const char* what() const throw();
+        };
 };
 
-    std::ostream &operator<<( std::ostream& o, Form const &src );
+std::ostream &operator<<( std::ostream& o, Form const &src );
 
 #endif
 

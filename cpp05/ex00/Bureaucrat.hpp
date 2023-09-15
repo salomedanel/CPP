@@ -6,7 +6,7 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 10:35:02 by sdanel            #+#    #+#             */
-/*   Updated: 2023/09/12 15:33:18 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/09/15 17:23:15 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,11 @@ class Bureaucrat {
 
         class GradeTooHighException {
             public:
-                const char* what() const throw()
-                {
-                    return ("Grade too high");
-                };
+                const char* what() const throw();
         };
         class GradeTooLowException {
             public:
-                const char* what() const throw()
-                {
-                    return ("Grade too low");
-                };
+                const char* what() const throw();
         };
 };
 

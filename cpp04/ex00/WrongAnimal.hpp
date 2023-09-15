@@ -6,7 +6,7 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 11:24:14 by sdanel            #+#    #+#             */
-/*   Updated: 2023/09/04 13:47:10 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/09/15 16:22:37 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ class WrongAnimal
         WrongAnimal &operator=(const WrongAnimal &src);
 
         std::string    getType(void) const;
-        virtual void makeSound(void) const;
+        void makeSound(void) const;
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 11:43:32 by sdanel            #+#    #+#             */
-/*   Updated: 2023/09/12 14:48:14 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/09/15 17:21:28 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,84 @@
 
 int main (void)
 {
-    Bureaucrat bureaucrat("Michel", 2);
-    Form       form("Formulaire Inscription", 1, 151);
+    std::cout << "----- TEST 1: Bureaucrat grade too high/low -----" << std::endl;
     try {
+        Bureaucrat bureaucrat("Michel", 151);
+        Form       form("Formulaire d'insciption", 2, 12);
         std::cout << form << std::endl;
     }
+    catch (Bureaucrat::GradeTooHighException &e) {
+        std::cerr << e.what() << std::endl;
+    }
+    catch (Bureaucrat::GradeTooLowException &e) {
+        std::cerr << e.what() << std::endl;
+    }
     catch (Form::GradeTooHighException &e) {
-        std::cerr << "GradeTooHighException: " << e.what() << std::endl;
+        std::cerr << e.what() << std::endl;
     }
      catch (Form::GradeTooLowException &e) {
-        std::cerr << "GradeTooLowException: " << e.what() << std::endl;
+        std::cerr << e.what() << std::endl;
     }
+    std::cout << std::endl;
+    std::cout << "----- TEST 2: Form grade too high/low -----" << std::endl;
+        try {
+        Bureaucrat bureaucrat("Jean", 12);
+        Form       form("Formulaire d'insciption", 2, 0);
+        std::cout << form << std::endl;
+    }
+    catch (Bureaucrat::GradeTooHighException &e) {
+        std::cerr << e.what() << std::endl;
+    }
+    catch (Bureaucrat::GradeTooLowException &e) {
+        std::cerr << e.what() << std::endl;
+    }
+    catch (Form::GradeTooHighException &e) {
+        std::cerr << e.what() << std::endl;
+    }
+     catch (Form::GradeTooLowException &e) {
+        std::cerr << e.what() << std::endl;
+    }
+    std::cout << std::endl;
+    std::cout << "----- TEST 3: Form already signed -----" << std::endl;
+        try {
+        Bureaucrat bureaucrat("Jean", 12);
+        Form       form("Formulaire d'insciption", 2, 30);
+        std::cout << form << std::endl;
+        form.beSigned(bureaucrat);
+        form.beSigned(bureaucrat);
+    }
+    catch (Bureaucrat::GradeTooHighException &e) {
+        std::cerr << e.what() << std::endl;
+    }
+    catch (Bureaucrat::GradeTooLowException &e) {
+        std::cerr << e.what() << std::endl;
+    }
+    catch (Form::GradeTooHighException &e) {
+        std::cerr << e.what() << std::endl;
+    }
+     catch (Form::GradeTooLowException &e) {
+        std::cerr << e.what() << std::endl;
+    }
+    std::cout << std::endl;
+    std::cout << "----- TEST 4: Grade to low to sign -----" << std::endl;
+        try {
+        Bureaucrat bureaucrat("Jean", 35);
+        Form       form("Formulaire d'insciption", 23, 30);
+        std::cout << form << std::endl;
+        form.beSigned(bureaucrat);
+    }
+    catch (Bureaucrat::GradeTooHighException &e) {
+        std::cerr << e.what() << std::endl;
+    }
+    catch (Bureaucrat::GradeTooLowException &e) {
+        std::cerr << e.what() << std::endl;
+    }
+    catch (Form::GradeTooHighException &e) {
+        std::cerr << e.what() << std::endl;
+    }
+     catch (Form::GradeTooLowException &e) {
+        std::cerr << e.what() << std::endl;
+    }
+    std::cout << std::endl;
     return (0);
 }
