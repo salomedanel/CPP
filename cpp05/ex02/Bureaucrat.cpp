@@ -6,7 +6,7 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 11:35:53 by sdanel            #+#    #+#             */
-/*   Updated: 2023/09/15 15:03:05 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/09/17 15:12:01 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,10 @@ void    Bureaucrat::decrementGrade() {
         throw Bureaucrat::GradeTooLowException();
     _grade++;
     std::cout << "Grade +1 --> New grade = " << _grade<< std::endl;
+}
+
+void    Bureaucrat::executeForm(Form const &form) {
+    form.execute(*this);
 }
 
 std::ostream &operator<<(std::ostream &o, Bureaucrat const &src) {

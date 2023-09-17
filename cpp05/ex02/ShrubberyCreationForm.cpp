@@ -6,7 +6,7 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 17:53:11 by sdanel            #+#    #+#             */
-/*   Updated: 2023/09/15 18:29:36 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/09/16 13:25:00 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : Form("Shrubbe
     std::cout << "Constructor called" << std::endl;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &src) {
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &src) : Form(src) {
     std::cout << "Copy constructor called" << std::endl;
     *this = src;
 }
@@ -32,9 +32,7 @@ ShrubberyCreationForm::~ShrubberyCreationForm(void) {
 ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationForm &src) {
     std::cout << "Assignation operator called" << std::endl;
     if (this != &src)
-    {
-        *this = src;
-    }
+        return *this;
     return (*this);
 }
 
@@ -49,10 +47,11 @@ void ShrubberyCreationForm::execute(Bureaucrat const &executor) const {
     // std::cout << "ShrubberyCreationForm is executed" << std::endl;
 }
 
-std::ostream &operator<<(std::ostream &o, ShrubberyCreationForm const &src) {
-    o << "Target - " << src.getTarget() << std::endl;
-    o << "Signed - " << src.getSigned() << std::endl;
-    o << " Required grades: " << src.getGradeToSign() << " / " << src.getGradeToExecute() << std::endl;
-    return (o);
+std::ostream &operator<<( std::ostream &o, ShrubberyCreationForm const &src ) {
+    o << "FORM INFO" << std::endl;
+    o << "Form name: " << src.getName() << std::endl
+      << "Grade to sign: " << src.getGradeToSign() << std::endl
+      << "Grade to execute: " << src.getGradeToExecute() << std::endl;
+    return o;
 }
 

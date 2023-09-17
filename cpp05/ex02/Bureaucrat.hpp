@@ -6,7 +6,7 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 10:35:02 by sdanel            #+#    #+#             */
-/*   Updated: 2023/09/15 16:50:50 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/09/17 15:10:19 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ class Bureaucrat {
 
         void incrementGrade();
         void decrementGrade();
+        void executeForm(Form const &form);
 
         class GradeTooHighException {
             public:

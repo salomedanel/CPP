@@ -6,7 +6,7 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 16:11:39 by sdanel            #+#    #+#             */
-/*   Updated: 2023/09/15 18:28:39 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/09/17 15:11:25 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,7 @@ bool Form::beSigned(Bureaucrat &brc) {
 }
 
 void Form::execute(Bureaucrat const &executor) const {
-    (void) executor;
-    
+    (void) executor;  
 }
 
 // exceptions
