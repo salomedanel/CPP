@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.hpp                                           :+:      :+:    :+:   */
+/*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 16:10:26 by sdanel            #+#    #+#             */
-/*   Updated: 2023/09/16 13:19:33 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/09/18 12:46:33 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FORM_HPP
-# define FORM_HPP
+#ifndef AFORM_HPP
+# define AFORM_HPP
 
 #include <iostream>
 
@@ -51,7 +51,7 @@ class Form {
             public:
                 const char* what() const throw();
         };
-        class FormAlreadySignedException : public std::exception{
+        class FormNotSignedException : public std::exception{
             public:
                 const char* what() const throw();
         };

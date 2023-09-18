@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.cpp                                           :+:      :+:    :+:   */
+/*   AForm.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 16:11:39 by sdanel            #+#    #+#             */
-/*   Updated: 2023/09/17 15:11:25 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/09/18 12:52:30 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Form.hpp"
+#include "AForm.hpp"
 
 Form::Form() : _name("default"), _signed(false), _gradeToExecute(1), _gradeToSign(1){
     std::cout << "Form default constructor called" << std::endl;
@@ -95,14 +95,15 @@ const char* Form::GradeTooLowException::what() const throw() {
     return ("Grade too low to execute or sign the form");
 };
 
-const char* Form::FormAlreadySignedException::what() const throw() {
-    return ("Form already signed");
+const char* Form::FormNotSignedException::what() const throw() {
+    return ("form need to be signed before executing");
 };
 
 std::ostream &operator<<( std::ostream &o, Form const &src ) {
-    o << "FORM INFO" << std::endl;
+    o << "FORM INFO (Form)" << std::endl;
     o << "Form name: " << src.getName() << std::endl
       << "Grade to sign: " << src.getGradeToSign() << std::endl
-      << "Grade to execute: " << src.getGradeToExecute() << std::endl;
+      << "Grade to execute: " << src.getGradeToExecute() << std::endl
+      << "Signed: " << src.signedStatus(src.getSigned()) << std::endl;
     return o;
 }
