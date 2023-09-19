@@ -6,18 +6,18 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 17:53:11 by sdanel            #+#    #+#             */
-/*   Updated: 2023/09/18 12:52:13 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/09/19 11:22:58 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RobotomyRequestForm.hpp"
 
 RobotomyRequestForm::RobotomyRequestForm(void) : Form("RobotomyRequestForm", 72, 45), _target("default") {
-    std::cout << this->getName() << "Default constructor called" << std::endl;
+  //  std::cout << this->getName() << "Default constructor called" << std::endl;
 }
 
 RobotomyRequestForm::RobotomyRequestForm(std::string target) : Form("RobotomyRequestForm", 72, 45), _target(target) {
-    std::cout << this->getName() << "Constructor called" << std::endl;
+  //  std::cout << this->getName() << "Constructor called" << std::endl;
 }
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &src) : Form(src) {

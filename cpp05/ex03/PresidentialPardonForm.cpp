@@ -13,11 +13,11 @@
 #include "PresidentialPardonForm.hpp"
 
 PresidentialPardonForm::PresidentialPardonForm(void) : Form("PresidentialPardonForm", 25, 5), _target("default") {
-    std::cout << this->getName() << "Default constructor called" << std::endl;
+    //std::cout << this->getName() << "Default constructor called" << std::endl;
 }
 
 PresidentialPardonForm::PresidentialPardonForm(std::string target) : Form("PresidentialPardonForm", 25, 5), _target(target) {
-    std::cout << this->getName() << "Constructor called" << std::endl;
+   // std::cout << this->getName() << "Constructor called" << std::endl;
 }
 
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &src) : Form(src) {

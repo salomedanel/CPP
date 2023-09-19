@@ -6,7 +6,7 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 15:08:43 by sdanel            #+#    #+#             */
-/*   Updated: 2023/09/18 17:26:44 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/09/19 11:37:53 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,18 @@ Form* Intern::makeForm(std::string formName, std::string FormTarget) const {
     for (int i = 0; i < 3; i++) {
         if (formName == formNames[i]) {
             std::cout << "Intern creates " << formName << std::endl;
-            return (forms[i]);
+            Form* createdForm = forms[i];
+            for (int j = 0; j < 3; j++) {
+                if (j != i) {
+                    delete forms[j];
+                }
+            }
+            return (createdForm);
         }
     }
     std::cout << "Intern can't create " << formName << std::endl;
+    for (int i = 0; i < 3; i++) {
+        delete forms[i];
+    }
     return (NULL);
 }

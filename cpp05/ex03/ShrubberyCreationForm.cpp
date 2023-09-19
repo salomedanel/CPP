@@ -6,18 +6,18 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 17:53:11 by sdanel            #+#    #+#             */
-/*   Updated: 2023/09/18 12:52:09 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/09/19 11:23:02 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
 
 ShrubberyCreationForm::ShrubberyCreationForm(void) : Form("ShrubberyCreationForm", 145, 137), _target("default") {
-    std::cout << this->getName() << "Default constructor called" << std::endl;
+   // std::cout << this->getName() << "Default constructor called" << std::endl;
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : Form("ShrubberyCreationForm", 145, 137), _target(target) {
-    std::cout << this->getName() << "Constructor called" << std::endl;
+  //  std::cout << this->getName() << "Constructor called" << std::endl;
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &src) : Form(src) {
