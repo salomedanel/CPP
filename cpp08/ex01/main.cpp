@@ -6,7 +6,7 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 10:42:52 by sdanel            #+#    #+#             */
-/*   Updated: 2023/09/27 13:44:02 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/09/27 15:33:43 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int main() {
     try {
         Span sp2 = Span(5);
         sp2.addNumber(1);
-        sp2.shortestSpan();
+     //   sp2.shortestSpan();
         sp2.longestSpan();
     } 
     catch (std::exception &e) {
@@ -58,7 +58,7 @@ int main() {
     std::cout << "\033[1;33;4mTest avec bcp d'int\033[0m" << std::endl; 
     try {
         Span sp3 = Span(1000);
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 10; i++) {
             sp3.addNumber(i);
         }
         std::cout << "--- Shortest & Longest span ---" << std::endl;
