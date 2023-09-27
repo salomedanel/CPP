@@ -1,4 +1,4 @@
-NAME		= Span
+NAME		= Mutated
 	
 CC			= c++
 FLAGS		= -Wall -Wextra -Werror -std=c++98
@@ -6,10 +6,10 @@ RM			= rm -rf
 
 OBJDIR = .objFiles
 
-FILES		= main Span
+FILES		= main
 SRC			= $(FILES:=.cpp)
 OBJ			= $(addprefix $(OBJDIR)/, $(FILES:=.o))
-HEADER		= Span.hpp
+HEADER		= MutantStack.hpp
 
 #Colors:
 GREEN		=	\e[92;5;118m

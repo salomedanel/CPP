@@ -6,7 +6,7 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 16:06:59 by sdanel            #+#    #+#             */
-/*   Updated: 2023/09/26 17:26:46 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/09/27 12:13:41 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,14 @@
 
 #include <iostream>
 #include <vector>
+#include <algorithm>
+#include <list>
 
 class Span {
     private:
         unsigned int _n;
         std::vector <int> _tab;
+        Span();
 
     public:
         Span(unsigned int n);
@@ -27,6 +30,11 @@ class Span {
         Span &operator=(const Span &src);
         ~Span();
 
+        //getter
+        unsigned int getN() const;
+        std::vector <int> getTab() const;
+        
+        // methods
         void addNumber(int i);
         unsigned int shortestSpan();
         unsigned int longestSpan();
@@ -36,6 +44,12 @@ class Span {
             public:
                 virtual const char *what() const throw();
         };
+        class SpanException : public std::exception {
+            public:
+                virtual const char *what() const throw();
+        };
 };
+
+std::ostream &operator<<(std::ostream &o, const Span &src);
 
 #endif
