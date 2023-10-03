@@ -6,7 +6,7 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:23:03 by sdanel            #+#    #+#             */
-/*   Updated: 2023/10/02 16:17:59 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/10/03 14:28:13 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <iomanip>
 
 class BitCoinExchange {
     public:
@@ -29,7 +30,8 @@ class BitCoinExchange {
 
         //methods
         void    getData(std::ifstream &file);
-        float  toFloat(std::string &rate);
+        float   toFloat(std::string &rate);
+        float   findRate(std::string &key);
         
         bool    isDateFormatValid(std::string &date);
         bool    isDateValid(std::string &date);

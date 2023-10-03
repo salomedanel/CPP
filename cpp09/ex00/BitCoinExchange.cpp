@@ -6,7 +6,7 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:22:44 by sdanel            #+#    #+#             */
-/*   Updated: 2023/10/02 16:18:46 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/10/03 14:26:14 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,13 @@ void    BitCoinExchange::getData(std::ifstream &file) {
     
     std::string line;
     while (std::getline(file, line)) {
-        int pos = line.find(',');
+        size_t pos = line.find(',');
         std::string rate = line.substr(pos + 1);
         _map[line.substr(0, pos)] = toFloat(rate);
     }
-//    std::map<std::string, float>::iterator it = _map.begin();
-//     for (; it != _map.end(); it++)
-//         std::cout << "date : " << it->first << " | rate  : " << it->second << std::endl;
+    // std::map<std::string, float>::iterator it = _map.begin();
+    // for (; it != _map.end(); it++)
+    //     std::cout << "date = " << it->first << " | rate = " << it->second << std::endl;
     file.close();
 }
 
@@ -83,6 +83,12 @@ bool    BitCoinExchange::isDateValid(std::string &date) {
         return (false);
     if (year < "2009")
         return (false);
+    if (year > "2022")
+        return (false);
+    if (year == "2022" && month > "03")
+        return (false);
+    if (year == "2022" && month == "03" && day > "29")
+        return (false);
     if (year == "2009" && month == "01" && day < "02")
         return (false);
     if (month < "01" || month > "12")
@@ -97,13 +103,19 @@ bool    BitCoinExchange::isDateValid(std::string &date) {
 }
 
 bool    BitCoinExchange::isValueFormatValid(float &value) {
-    if (value < 0 || value > 10000)
+    if (value < 0) {
+        std::cout << "Error - Negative value : " << value << std::endl;
         return (false);
+    }  
+    if(value > 1000) {
+        std::cout << "Error - Too large value : " << value << std::endl;
+        return (false);
+    }
     return (true);
 }
 
-// parse date
-// verifier qu'il y ait bien le format YYYY-MM-DD (4 chiffres - 2 chiffres - 2 chiffres)
-// verifier que MM soit entre 01 et 12
-// verifier que DD soit entre 01 et 31
-// verifier que YYYY soit apres 2009
+float   BitCoinExchange::findRate(std::string &key) {
+    if (_map.count(key) > 0) // count le nb key - donc verifie si la date est trouvee
+        return (_map.at(key)); // si oui, retourne la valeur associee at cette key
+    return (--_map.lower_bound(key))->second; // sinon, cherche la valeur associee a la cle qui est superieur ou egales a key
+}

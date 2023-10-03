@@ -6,7 +6,7 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:22:14 by sdanel            #+#    #+#             */
-/*   Updated: 2023/10/02 16:18:16 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/10/03 17:58:12 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,22 +36,34 @@ int main(int argc, char **argv) {
     btc.getData(database);
 
     std::string line;
-    std::getline(input, line); // sauter la premiere ligne
+    std::getline(input, line); // saute la premiere ligne
+    std::cout << line << std::endl;
     while (std::getline(input, line)) {
-        std::string date = line.substr(0, line.find('|'));
-        if (btc.isDateFormatValid(date) == false || btc.isDateValid(date) == false)
-            std::cout << date << " : invalid date format" << std::endl;
-        std::string rate = line.substr(line.find('|') + 1);
-        float ratef = btc.toFloat(rate);
-        if (btc.isValueFormatValid(ratef) == false)
-            std::cout << rate << " : invalid value format" << std::endl;
+        size_t pipe_pos = line.find('|');
+        if (pipe_pos == std::string::npos) {
+            std::cout << "Error - bad input => " << line << std::endl;
+            continue ;
+        }
+        std::string date = line.substr(0, line.find('|') - 1);
+        if (btc.isDateFormatValid(date) == false || btc.isDateValid(date) == false) {
+            std::cout << "Error - invalid date format or value : " << date << std::endl;
+            continue ;
+        }
+        std::string value = line.substr(line.find('|') + 1);
+        if (value.find_first_of("0123456789.-") == std::string::npos) // retourn npos si aucune des valeurs n'est trouvee dans la string
+            std::cout << "Error - value must contain only digit : " << value << std::endl;
+        float valuef = btc.toFloat(value);
+        if (btc.isValueFormatValid(valuef) == false)
+            continue;
+        else 
+            std::cout << date << " => " << valuef << " = " << valuef * btc.findRate(date) << std::endl;
     }
-    // ouvrir le fichier input et lire les données
-    // pour chaque ligne, parser la date et le taux
-    // trouver le bon taux associer a la date dans le data.csv (la map)
-    // calculer le taux de change
-    // afficher la sortie "Date : <date> | Taux : <taux>"
-    
+    database.close();
+    input.close();
     return (0);
 }
 
+// to fix :
+// date > 2022 ne retourne pas d'erreur - OK
+// gerer une date en 2022 qui est au dessus de la derniere date du data.csv
+// rate renvoye n'est pas le bon - OK
