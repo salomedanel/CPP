@@ -6,7 +6,7 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 00:15:58 by sdanel            #+#    #+#             */
-/*   Updated: 2023/10/04 10:52:45 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/10/04 17:40:40 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,11 @@
 
 #include <iostream>
 #include <stack>
+#include <string>
+#include <cstdlib>
+#include <sstream>
 
 class RPN {
-    private:
-        std::stack<int> _stack;
     public:
         RPN();
         RPN(RPN const &src);
@@ -27,7 +28,7 @@ class RPN {
 
         //methods
         bool    checkArg(std::string &arg);
-        int     calculate(std::string &arg, std::stack<int> stack);
+        int     calculate(std::string &arg);
 };
 
 #endif
