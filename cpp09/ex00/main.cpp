@@ -6,7 +6,7 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:22:14 by sdanel            #+#    #+#             */
-/*   Updated: 2023/10/03 17:58:12 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/10/04 00:14:38 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,3 @@ int main(int argc, char **argv) {
     input.close();
     return (0);
 }
-
-// to fix :
-// date > 2022 ne retourne pas d'erreur - OK
-// gerer une date en 2022 qui est au dessus de la derniere date du data.csv
-// rate renvoye n'est pas le bon - OK
