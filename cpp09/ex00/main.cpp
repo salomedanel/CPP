@@ -6,7 +6,7 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:22:14 by sdanel            #+#    #+#             */
-/*   Updated: 2023/10/04 00:14:38 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/10/05 17:30:03 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int main(int argc, char **argv) {
         std::cerr << "Invalid nb of argument. Usage : ./btc <fichier.txt>" << std::endl;
         return (1);
     }
-
     std::ifstream input(argv[1], std::ifstream::in);
     if (!input.is_open())
         return err("Erreur lors de l'ouverture du fichier input");

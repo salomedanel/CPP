@@ -6,7 +6,7 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 00:15:58 by sdanel            #+#    #+#             */
-/*   Updated: 2023/10/04 17:40:40 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/10/05 13:44:07 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,16 @@ class RPN {
         //methods
         bool    checkArg(std::string &arg);
         int     calculate(std::string &arg);
+
+        //exceptions
+        class DivZero : public std::exception {
+            public:
+                virtual const char *what() const throw();
+        };
+        class NotEnoughOperand : public std::exception {
+            public:
+                virtual const char *what() const throw();
+        };
 };
 
 #endif

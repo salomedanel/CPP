@@ -6,7 +6,7 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 00:17:04 by sdanel            #+#    #+#             */
-/*   Updated: 2023/10/04 17:40:35 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/10/05 14:50:37 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ RPN::~RPN() {}
 bool    RPN::checkArg(std::string &arg) {
     int i = 0;
     int nb_operators = 0;
+    int nb_numbers = 0;
     while (arg[i]) {
         if (arg[i] == ' ')
             i++;
@@ -38,15 +39,21 @@ bool    RPN::checkArg(std::string &arg) {
             i++;
             nb_operators++;
         }
-        else if (arg[i] >= '0' && arg[i] <= '9')
+        else if (arg[i] >= '0' && arg[i] <= '9' && arg[i + 1] == ' ' && arg[i + 1] != '\0') {
             i++;
+            nb_numbers++;
+        }
         else {
-            std::cout << "Error - invalid argument, should only contains int & operators (+-*/)" << std::endl;
+            std::cout << "Error - invalid argument, should contains int < 10 & operators (+-*/)" << std::endl;
             return (false);
         }
     }
     if (nb_operators == 0) {
         std::cout << "Error - no operator" << std::endl;
+        return (false);
+    }
+    if (nb_operators != (nb_numbers - 1)) {
+        std::cout << "Error - invalid number of operators" << std::endl;
         return (false);
     }
     return (true);
@@ -61,13 +68,11 @@ int RPN::calculate(std::string &arg) {
     while (iss >> elem) { // permet de parcourir le resultat de iss et d'extraire un mot et de le stocker dans la variable
        // si on croise un operateur, on met dans des variables les deux derniers elements de la pile
        if (elem == "+" || elem == "-" || elem == "*" || elem == "/") {
-        if (stack.size () < 2) {
-            std::cerr << "Error: not enough operands" << std::endl;
-            return (-1);
-        }
-            int operand2 = stack.top(); 
+        if (stack.size () < 2)
+           throw NotEnoughOperand();
+            int operand2 = stack.top(); //3
             stack.pop();
-            int operand1 = stack.top();
+            int operand1 = stack.top(); // 2
             stack.pop();
             // on effecture l'operation en mettant le resultat sur la pile
             if (elem == "+")
@@ -77,10 +82,8 @@ int RPN::calculate(std::string &arg) {
             else if (elem == "*")
                 stack.push(operand1 * operand2);
             else if (elem == "/") {
-                if (operand2 == 0) {
-                    std::cerr << "Error: division by zero" << std::endl;
-                    return (-1);
-                }
+                if (operand2 == 0)
+                    throw DivZero();
                 stack.push(operand1 / operand2);
             }
         }
@@ -88,6 +91,14 @@ int RPN::calculate(std::string &arg) {
             stack.push(std::atoi(elem.c_str()));       
     }
     return (stack.top());
+}
+
+const char* RPN::DivZero::what() const throw() {
+    return ("Error: division by zero");
+}
+
+const char* RPN::NotEnoughOperand::what() const throw() {
+    return ("Error: not enough operands");
 }
 
 // 1. `push()` : ajouter un élément au début.

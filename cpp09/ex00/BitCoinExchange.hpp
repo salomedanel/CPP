@@ -6,7 +6,7 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:23:03 by sdanel            #+#    #+#             */
-/*   Updated: 2023/10/03 14:28:13 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/10/05 17:26:46 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 #include <iomanip>
 
 class BitCoinExchange {
+    private:
+        std::map<std::string, float> _map;
+        
     public:
         BitCoinExchange();
         BitCoinExchange(BitCoinExchange const &src);
@@ -37,8 +40,21 @@ class BitCoinExchange {
         bool    isDateValid(std::string &date);
         bool    isDigit(char c);
         bool    isValueFormatValid(float &value);
-    private:
-        std::map<std::string, float> _map;
+        
+        //exceptions
+        class NegativeValue: public std::exception {
+            public:
+                virtual const char *what() const throw();
+        };
+        class OnlyDigitException: public std::exception {
+            public:
+                virtual const char *what() const throw();
+        };
+        class TooLargeValueException: public std::exception {
+            public:
+                virtual const char *what() const throw();
+        };
+        
 };
 
 #endif
