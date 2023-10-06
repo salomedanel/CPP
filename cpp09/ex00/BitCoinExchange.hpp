@@ -6,7 +6,7 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:23:03 by sdanel            #+#    #+#             */
-/*   Updated: 2023/10/05 17:26:46 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/10/06 11:28:52 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ class BitCoinExchange {
         bool    isDateFormatValid(std::string &date);
         bool    isDateValid(std::string &date);
         bool    isDigit(char c);
-        bool    isValueFormatValid(float &value);
+        bool    isValueValid(float &value);
+        bool    isValueFormatValid(std::string value);
         
         //exceptions
         class NegativeValue: public std::exception {

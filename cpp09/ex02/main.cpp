@@ -6,7 +6,7 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 17:43:34 by sdanel            #+#    #+#             */
-/*   Updated: 2023/10/04 18:33:01 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/10/06 14:44:01 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,41 @@
 
 int main(int argc, char **argv) {
 
-    if (argc < 2) {
-        std::cerr << "Invalid nb of arguments. Usage: ./PmergeMe <list of nb to sort>" << std::endl;
+    if (argc < 3) {
+        std::cerr << "Invalid nb of arguments. Usage: ./PmergeMe <list of nb to sort (at least 2)>" << std::endl;
         return (1);
     }
-    (void) argv;
+    
+    PmergeMe pmm;
+    
+    try {
+        // check si arg = int
+        for (int i = 1; i < argc; i++) {
+            std::string arg_str = std::string(argv[i]);
+            if (arg_str.find_first_not_of("0123456789") != std::string::npos)
+                throw PmergeMe::InvalidArgException();
+        }
+
+        // parse arg dans un vector tmp
+        std::vector<unsigned int> tmp;
+        for (int i = 1; i < argc; i++)
+            tmp.push_back(std::atoi(argv[i]));
+        
+        // check les doublons 
+        for (std::vector<unsigned int>::iterator it = tmp.begin(); it != tmp.end(); it++) {
+            for (std::vector<unsigned int>::iterator itbis = it + 1; itbis != tmp.end(); itbis++) {
+                if (*it == *itbis)
+                    throw PmergeMe::DuplicateException();
+            }
+        }
+    
+    }
+    catch (std::exception &e) {
+        std::cerr << e.what() << std::endl;
+        return (1);
+    }
+    
+    
+
     return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:22:44 by sdanel            #+#    #+#             */
-/*   Updated: 2023/10/05 17:30:27 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/10/06 11:38:50 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,7 @@ void    BitCoinExchange::getData(std::ifstream &file) {
     file.close();
 }
 
-// faire des exceptions
 float  BitCoinExchange::toFloat(std::string &rate) {
-    int i = 0;
-    if (rate[i] == ' ')
-        i++;
-    for (; rate[i]; i++)
-        if (isdigit(rate[i]) == false && rate[i] != '.')
-            return (-1);
     std::istringstream iss(rate);
     float num = 0;
     iss >> num;
@@ -103,13 +96,30 @@ bool    BitCoinExchange::isDateValid(std::string &date) {
     return (true);
 }
 
-bool    BitCoinExchange::isValueFormatValid(float &value) {
-    if (value < 0) {
-        std::cout << "Error - Negative value" << std::endl;
+bool    BitCoinExchange::isValueFormatValid(std::string value) {
+    int i = 0;
+    if (value[i] == '-') {
+        std::cerr << "Error - Negative value" << std::endl;
         return (false);
-    }  
-    if(value > 1000) {
-        std::cout << "Error - Too large value" << std::endl;
+    }
+    while (value[i])
+    {
+        if ((value[i] < '0' || value[i] > '9') && value[i] != '.') {
+            std::cerr << "Error - Value must contain only digit" << std::endl;
+            return (false);
+        }
+        if ((value[i] == '.' && i == 0) || (value[i] == '.' && value[i + 1] == '\0')) {
+            std::cerr << "Error - Wrong value format" << std::endl;
+            return (false);
+        }
+        i++;
+    }
+    return (true);
+}
+
+bool    BitCoinExchange::isValueValid(float &value) {
+    if (value > 1000) {
+        std::cerr << "Error - Too large value" << std::endl;
         return (false);
     }
     return (true);
@@ -120,16 +130,3 @@ float   BitCoinExchange::findRate(std::string &key) {
         return (_map.at(key)); // si oui, retourne la valeur associee at cette key
     return (--_map.lower_bound(key))->second; // sinon, cherche la valeur associee a la cle qui est superieur ou egales a key
 }
-
-
-// const char* BitCoinExchange::NegativeValue::what() const throw() {
-//     return ("Error - Negative Value");
-// }
-
-// const char* BitCoinExchange::OnlyDigitException::what() const throw() {
-//     return ("Error - Value must contain only digit");
-// }
-
-// const char* BitCoinExchange::TooLargeValueException::what() const throw() {
-//     return ("Error - Too large value");
-// }

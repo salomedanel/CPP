@@ -6,7 +6,7 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:22:14 by sdanel            #+#    #+#             */
-/*   Updated: 2023/10/05 17:30:03 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/10/06 11:39:16 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,9 @@ int main(int argc, char **argv) {
             std::cout << "Error - invalid date format or value : " << date << std::endl;
             continue ;
         }
-        std::string value = line.substr(line.find('|') + 1);
-        if (value.find_first_of("0123456789.-") == std::string::npos) // retourn npos si aucune des valeurs n'est trouvee dans la string
-            std::cout << "Error - value must contain only digit : " << value << std::endl;
+        std::string value = line.substr(line.find('|') + 2);
         float valuef = btc.toFloat(value);
-        if (btc.isValueFormatValid(valuef) == false)
+        if (btc.isValueFormatValid(value) == false || btc.isValueValid(valuef) == false)
             continue;
         else 
             std::cout << date << " => " << valuef << " = " << valuef * btc.findRate(date) << std::endl;
