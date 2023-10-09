@@ -6,7 +6,7 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 18:29:06 by sdanel            #+#    #+#             */
-/*   Updated: 2023/10/09 14:59:30 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/10/09 15:49:37 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,6 @@ std::list<unsigned int> mergeLists(std::list<unsigned int>& left, std::list<unsi
 {
     std::list<unsigned int> result;
     
-    // Merge left & right dans result en mettant le plus petit element des 2 en premier puis on l'efface
     while (!left.empty() && !right.empty())
 	{
         if (left.front() <= right.front())
@@ -146,14 +145,12 @@ std::list<unsigned int> mergeLists(std::list<unsigned int>& left, std::list<unsi
         }
     }
     
-    // Si on a efface l'element de droite (qui etait le plus petit des 2), on vient mettre l'element de gauche a la suite
     while (!left.empty())
 	{
         result.push_back(left.front());
         left.erase(left.begin());
     }
 
-    // Si on a efface l'element de gauche (qui etait le plus petit des 2), on vient mettre l'element de droite a la suite
     while (!right.empty())
 	{
         result.push_back(right.front());
@@ -164,10 +161,9 @@ std::list<unsigned int> mergeLists(std::list<unsigned int>& left, std::list<unsi
 
 std::list<unsigned int> mergeInsertList(std::list<unsigned int>& list) {
     
-    // condition de sortie de la recursivite
     if (list.size() <= 1)
         return (list);
-    // On divise notre vecteur en 2 pour le mettre dans 2 parties, une gauche une droite
+
     int mid = list.size() / 2;
     std::list<unsigned int> left;
     std::list<unsigned int> right;
@@ -178,11 +174,9 @@ std::list<unsigned int> mergeInsertList(std::list<unsigned int>& list) {
     }
     right = list;
 
-    // On le fait recursivement jusqu'a obtenir des paires: un chiffre a gauche, un chiffre a droite
     left = mergeInsertList(left);
     right = mergeInsertList(right);
 
-    // on va merger les 2 vecteurs en les triant
     return mergeLists(left, right);
 }
 
@@ -200,7 +194,7 @@ void    PmergeMe::sortList(int argc, char **argv) {
     list = mergeInsertList(list);
     
     std::clock_t end = std::clock();
-    double elapsed_time = static_cast<double>(end - start) / CLOCKS_PER_SEC; // constante qui sort le nb de tick par sec
+    double elapsed_time = static_cast<double>(end - start) / CLOCKS_PER_SEC;
     
     std::cout << std::endl << "[List] - After : ";
     printList(list);
