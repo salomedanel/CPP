@@ -6,7 +6,7 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 17:45:17 by sdanel            #+#    #+#             */
-/*   Updated: 2023/10/06 14:07:06 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/10/09 14:01:34 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@
 #include <vector>
 #include <list>
 #include <cstdlib>
+#include <ctime>
+#include <iomanip>
+#include <sstream>
+#include <limits>
+
 
 class PmergeMe {
     public:
@@ -39,12 +44,12 @@ class PmergeMe {
         public:
             virtual const char* what() const throw();
     };
+    class UINTMAX : public std::exception {
+        public:
+            virtual const char* what() const throw();
+    };
 };
 
-#endif
+unsigned int    ft_stou(const std::string str);
 
-// Ford-Johnson algorithm
-// Grouper tous les elements en paires de maniere aleatoire
-// Comparer les elements de chaque paire pour identifier le plus grand
-// Mettre les plus grands en tete de liste
-// 
+#endif

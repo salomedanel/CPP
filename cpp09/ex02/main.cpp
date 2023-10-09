@@ -6,7 +6,7 @@
 /*   By: sdanel <sdanel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 17:43:34 by sdanel            #+#    #+#             */
-/*   Updated: 2023/10/06 14:44:01 by sdanel           ###   ########.fr       */
+/*   Updated: 2023/10/09 15:00:17 by sdanel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int main(int argc, char **argv) {
         // parse arg dans un vector tmp
         std::vector<unsigned int> tmp;
         for (int i = 1; i < argc; i++)
-            tmp.push_back(std::atoi(argv[i]));
+            tmp.push_back(ft_stou(argv[i]));
         
         // check les doublons 
         for (std::vector<unsigned int>::iterator it = tmp.begin(); it != tmp.end(); it++) {
@@ -48,7 +48,9 @@ int main(int argc, char **argv) {
         return (1);
     }
     
-    
+    pmm.sortVector(argc, argv);
+    std::cout << std::endl;
+    pmm.sortList(argc, argv);
 
     return (0);
 }
